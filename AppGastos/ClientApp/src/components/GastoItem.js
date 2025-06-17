@@ -3,7 +3,7 @@ import React from 'react';
 export default function GastoItem({ gasto, onEdit, onDelete }) {
   return (
     <tr>
-      <td>{gasto.nombre}</td>
+      <td>{gasto.descripcion}</td>
       <td>${gasto.monto.toFixed(2)}</td>
       <td>{gasto.fecha.slice(0, 10)}</td>
       <td>{gasto.categoria}</td>
