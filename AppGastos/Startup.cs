@@ -70,13 +70,16 @@ namespace AppGastos
             app.UseRouting();
             app.UseCors("AllowAll");
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapFallbackToController("Index", "Home");
-            });
+    app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllers(); // <--- AGREGAR ESTA LÍNEA
+    endpoints.MapFallbackToController("Index", "Home");
+});
+
 
             app.UseSpa(spa =>
             {
