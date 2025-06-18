@@ -34,7 +34,7 @@ namespace AppGastos
             });
 
             services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddControllersWithViews()
                 .AddJsonOptions(options =>
