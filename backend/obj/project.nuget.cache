@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u0BD+Ia71Us=",
+  "dgSpecHash": "otO0lNWnrB4=",
   "success": true,
-  "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Documentos\\gabriela\\DESWEB-ControlGastos\\ControlGastos-Migración-3capas\\backend\\backend.csproj",
+  "projectFilePath": "C:\\Users\\gabri\\OneDrive\\Documentos\\gabriela\\DESWEB-ControlGastos\\PRUEBA\\ControlGastos-Migración-3capas\\backend\\backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gabri\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\gabri\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
