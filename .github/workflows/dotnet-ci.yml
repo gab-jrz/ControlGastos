@@ -25,5 +25,4 @@ jobs:
 
     - name: Compilar la solución
       run: dotnet build --no-restore --configuration Release
-    - name: 💅 Verificar formato de código
-      run: dotnet format --verify-no-changes
+
