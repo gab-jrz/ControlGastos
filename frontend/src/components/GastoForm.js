@@ -10,33 +10,33 @@ const categorias = [
 ];
 
 export default function GastoForm({ onSubmit, initialData, onCancel }) {
-  const [nombre, setNombre] = useState('');
+  const [descripcion, setDescripcion] = useState('');
   const [monto, setMonto] = useState('');
   const [fecha, setFecha] = useState('');
   const [categoria, setCategoria] = useState('');
 
   useEffect(() => {
     if (initialData) {
-      setNombre(initialData.nombre || '');
+      setDescripcion(initialData.descripcion || '');
       setMonto(initialData.monto || '');
       setFecha(initialData.fecha ? initialData.fecha.slice(0, 10) : '');
       setCategoria(initialData.categoria || '');
     } else {
-      setNombre(''); setMonto(''); setFecha(''); setCategoria('');
+      setDescripcion(''); setMonto(''); setFecha(''); setCategoria('');
     }
   }, [initialData]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!nombre || !monto || !fecha || !categoria) return;
-    onSubmit({ nombre, monto: parseFloat(monto), fecha, categoria });
+    if (!descripcion || !monto || !fecha || !categoria) return;
+    onSubmit({ descripcion, monto: parseFloat(monto), fecha, categoria });
   };
 
   return (
     <form onSubmit={handleSubmit} className="mb-3">
       <div className="form-group mb-2">
-        <label>Nombre</label>
-        <input className="form-control" value={nombre} onChange={e => setNombre(e.target.value)} required />
+        <label>Descripción</label>
+        <input className="form-control" value={descripcion} onChange={e => setDescripcion(e.target.value)} required />
       </div>
       <div className="form-group mb-2">
         <label>Monto</label>

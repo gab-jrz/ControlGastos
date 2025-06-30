@@ -8,19 +8,33 @@ export default function GastosList() {
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:5174/api/gastos";
+  const API_URL = "/api/gastos"; // Usa el proxy configurado
 
   const fetchGastos = async () => {
     setCargando(true);
     try {
-      const res = await fetch(API_URL);
+      const res = await fetch(API_URL, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        credentials: 'include' // Importante para CORS
+      });
+      
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+      
       const data = await res.json();
       setGastos(data);
       setError(null);
     } catch (err) {
-      setError("Error al cargar los gastos");
+      console.error('Error al cargar los gastos:', err);
+      setError(`Error al cargar los gastos: ${err.message}`);
+    } finally {
+      setCargando(false);
     }
-    setCargando(false);
   };
 
   useEffect(() => {
