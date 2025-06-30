@@ -8,17 +8,17 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - name: Clonar el repositorio
       uses: actions/checkout@v3
 
-    - name: Instalar .NET
+    - name: Instalar .NET 9.0 (preview)
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x' # Ajustar a tu versión real si usás otra
+        dotnet-version: '9.0.x'
+        include-prerelease: true
 
     - name: Restaurar dependencias
       run: dotnet restore
@@ -26,3 +26,5 @@ jobs:
     - name: Compilar la solución
       run: dotnet build --no-restore --configuration Release
 
+    - name: Ejecutar pruebas unitarias
+      run: dotnet test --no-build --verbosity normal --configuration Release
