@@ -6,7 +6,7 @@ namespace AppGastosAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-        public class GastosController : ControllerBase
+    public class GastosController : ControllerBase
     {
         private readonly IGastoService _service;
 
