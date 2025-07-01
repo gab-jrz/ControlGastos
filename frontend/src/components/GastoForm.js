@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const categorias = [
+const categorias = [ //Lista de categorias
   'Alimentación',
   'Transporte',
   'Vivienda',
@@ -9,28 +9,44 @@ const categorias = [
   'Otros'
 ];
 
-export default function GastoForm({ onSubmit, initialData, onCancel }) {
-  const [descripcion, setDescripcion] = useState('');
-  const [monto, setMonto] = useState('');
-  const [fecha, setFecha] = useState('');
-  const [categoria, setCategoria] = useState('');
+export default function GastoForm({ onSubmit, initialData, onCancel, submitLabel }) {  //Funcion para agregar gastos
+  const [descripcion, setDescripcion] = useState(''); //Estado de la descripcion
+  const [monto, setMonto] = useState(''); //Estado del monto
+  const [fecha, setFecha] = useState(''); //Estado de la fecha
+  const [categoria, setCategoria] = useState(''); //Estado de la categoria
 
-  useEffect(() => {
-    if (initialData) {
+  useEffect(() => { //Funcion para editar gastos
+    if (initialData && typeof initialData === 'object') {
       setDescripcion(initialData.descripcion || '');
-      setMonto(initialData.monto || '');
-      setFecha(initialData.fecha ? initialData.fecha.slice(0, 10) : '');
+      setMonto(initialData.monto?.toString() || '');
+      setFecha(initialData.fecha ? new Date(initialData.fecha).toISOString().split('T')[0] : '');
       setCategoria(initialData.categoria || '');
     } else {
-      setDescripcion(''); setMonto(''); setFecha(''); setCategoria('');
-    }
-  }, [initialData]);
+      setDescripcion('');
+      setMonto('');
+      setFecha('');
+      setCategoria('');
+    }//Reinicia los estados
+  }, [initialData]); //Reinicia los estados
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e) => { //Funcion para agregar gastos
     e.preventDefault();
-    if (!descripcion || !monto || !fecha || !categoria) return;
-    onSubmit({ descripcion, monto: parseFloat(monto), fecha, categoria });
-  };
+    if (!descripcion.trim() || !monto || !fecha || !categoria) {
+      console.error('Por favor complete todos los campos requeridos');
+      return;
+    }
+    const montoNum = parseFloat(monto);
+    if (isNaN(montoNum) || montoNum <= 0) {
+      console.error('El monto debe ser un número mayor a 0');
+      return;
+    }
+    onSubmit({ 
+      descripcion: descripcion.trim(), 
+      monto: montoNum, 
+      fecha, 
+      categoria 
+    });
+  };//Envia los datos al componente padre
 
   return (
     <form onSubmit={handleSubmit} className="mb-3">
@@ -54,9 +70,9 @@ export default function GastoForm({ onSubmit, initialData, onCancel }) {
         </select>
       </div>
       <div className="d-flex gap-2 mt-2">
-        <button type="submit" className="btn btn-primary">{initialData ? 'Guardar cambios' : 'Agregar gasto'}</button>
+        <button type="submit" className="btn btn-primary">{submitLabel || (initialData ? 'Guardar cambios' : 'Agregar gasto')}</button>
         {onCancel && <button type="button" className="btn btn-secondary" onClick={onCancel}>Cancelar</button>}
       </div>
     </form>
   );
-} 
+}

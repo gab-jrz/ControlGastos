@@ -31,16 +31,13 @@ builder.Services.AddCors(options =>
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-// Configuración CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowFrontend", builder =>
+    options.AddDefaultPolicy(policy =>
     {
-        builder.WithOrigins("http://localhost:3000")
-               .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials()
-               .WithExposedHeaders("Content-Disposition");
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
     });
 });
 
@@ -74,12 +71,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 
 app.UseAuthorization();
-// Middleware
-app.UseCors("AllowFrontend");
-app.UseAuthorization();
-
-// Map controllers
-app.MapControllers();
+app.UseCors();
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
