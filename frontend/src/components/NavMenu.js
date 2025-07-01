@@ -50,7 +50,8 @@ export class NavMenu extends Component {
   }
 }
 
-export default NavMenu;
+// NavMenu eliminado para interfaz única monolítica
+export default function NavMenu() { return null; }
 
 /*
 import React, { Component } from 'react';
