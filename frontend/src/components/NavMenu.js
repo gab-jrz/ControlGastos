@@ -26,12 +26,12 @@ export class NavMenu extends Component {
   render () {
     return (
       <header>
-        <Navbar className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" light>
+        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/gastos">AppGastos</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow-1">
+              <ul className="navbar-nav flex-grow">
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/counter">Counter</NavLink>
                 </NavItem>
@@ -50,7 +50,8 @@ export class NavMenu extends Component {
   }
 }
 
-export default NavMenu;
+// NavMenu eliminado para interfaz única monolítica
+export default function NavMenu() { return null; }
 
 /*
 import React, { Component } from 'react';
@@ -79,12 +80,12 @@ export class NavMenu extends Component {
   render () {
     return (
       <header>
-        <Navbar className="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" light>
+        <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3" light>
           <Container>
             <NavbarBrand tag={Link} to="/">AppGastos</NavbarBrand>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
             <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
-              <ul className="navbar-nav flex-grow-1">
+              <ul className="navbar-nav flex-grow">
                 <NavItem>
                   <NavLink tag={Link} className="text-dark" to="/">Home</NavLink>
                 </NavItem>
